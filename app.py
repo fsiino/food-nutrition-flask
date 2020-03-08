@@ -3,9 +3,12 @@ from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
 
+import config
+
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'test'
+app.config['MONGO_URI'] = config.api_key
 
 mongo = PyMongo(app)
 
@@ -26,19 +29,23 @@ def get_queried_foods():
   fieldsets.append(request.args)
   for el in fieldsets:
     query = {
-        'nutrients': {
-            '$elemMatch': {
-                'nutrient': el['nutrient'],
-                'gm': {
-                    '$gt': el['min'],
-                    '$lte': el['max']
-                }
-            }
+      'nutrients': {
+        '$elemMatch': {
+          'nutrient': el['nutrient'],
+          'gm': {
+            '$gt': el['min'],
+            '$lte': el['max']
+          }
         }
+      }
     }
     queries.append(query)
 
-  return jsonify({'fieldsets': fieldsets}, {'queries': queries})
+  # return jsonify({'fieldsets': fieldsets}, {'queries': queries})
+  # print(queries)
+  results = food.find({'$and' : queries})
+  return jsonify({'results' : results})
+  # # return jsonify({'queries' : queries})
 
 @app.route('/')
 def index():
