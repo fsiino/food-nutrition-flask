@@ -1,0 +1,43 @@
+body {
+  background-color: #f7f7f7;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 12px;
+}
+
+h1, h3 {
+  text-align: center;
+}
+
+.buttons-wrapper {
+  text-align: center;
+}
+
+.app-container {
+  width: 60%;
+  margin: auto;
+}
+
+.fieldsets-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.fieldsets-wrapper {
+  margin: 10px 0 10px 0;
+}
+
+input[type=text] {
+  padding: 2px;
+  margin: 5px;
+}
+
+input[type=submit], button {
+  background-color: rgb(156, 240, 240);
+  font-size: 12px;
+  padding: 2px;
+  margin: 2px;
+  border: 1px solid #696969;
+  width: 130px;
+}
