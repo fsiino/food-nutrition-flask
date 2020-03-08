@@ -4,6 +4,7 @@ from flask import request
 from flask_pymongo import PyMongo
 
 import config
+from bson import json_util
 
 app = Flask(__name__)
 
@@ -25,27 +26,33 @@ def get_all_foods():
 def get_queried_foods():
   food = mongo.db.foods
   fieldsets = []
+  results = []
   queries = []
-  fieldsets.append(request.args)
-  for el in fieldsets:
+
+  nutrients = request.args.get('nutrients').split(',')
+  mins = request.args.get('mins').split(',')
+  maxes = request.args.get('maxes').split(',')
+
+  fieldsets.append(nutrients)
+  fieldsets.append(mins)
+  fieldsets.append(maxes)
+
+  for i in range(len(fieldsets)-1):
     query = {
       'nutrients': {
         '$elemMatch': {
-          'nutrient': el['nutrient'],
+          'nutrient': fieldsets[0][i],
           'gm': {
-            '$gt': el['min'],
-            '$lte': el['max']
+            '$gt': int(fieldsets[1][i]),
+            '$lte': int(fieldsets[2][i]),
           }
         }
       }
     }
     queries.append(query)
-
-  # return jsonify({'fieldsets': fieldsets}, {'queries': queries})
-  # print(queries)
+    
   results = food.find({'$and' : queries})
-  return jsonify({'results' : results})
-  # # return jsonify({'queries' : queries})
+  return json_util.dumps(results, default=json_util.default)
 
 @app.route('/')
 def index():

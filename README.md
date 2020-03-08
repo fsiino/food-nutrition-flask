@@ -63,5 +63,5 @@ Originally, each `nutrient`, `min`, and `max` row `fieldset` was a separate GET 
 def hello():
   print('hello world')
 ```
-Each time a user performs a search, the data is fetched on the backend using the `/search/*` route with a wildcard, according to their specified search parameters. This gives the flexibility to build up a chained query string should the user input more than one nutrient fieldset. Because of the need to perform an O(N^2) operation to format user inputs, the `parseQuery` function is resolved by a promise before sent to the database. 
+<!-- Each time a user performs a search, the data is fetched on the backend using the `/search/*` route with a wildcard, according to their specified search parameters. This gives the flexibility to build up a chained query string should the user input more than one nutrient fieldset. Because of the need to perform an O(N^2) operation to format user inputs, the `parseQuery` function is resolved by a promise before sent to the database.  -->
 
