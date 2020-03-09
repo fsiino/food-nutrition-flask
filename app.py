@@ -1,4 +1,4 @@
-from flask import Flask, current_app, send_from_directory
+from flask import Flask, current_app, send_from_directory, render_template
 from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
