@@ -9,6 +9,13 @@ import re
 
 app = Flask(__name__)
 
+ENV = 'prod'
+
+if ENV == 'dev':
+    app.debug = True
+else:
+    app.debug = False
+
 app.config['MONGO_DBNAME'] = 'test'
 app.config['MONGO_URI'] = config.api_key
 
