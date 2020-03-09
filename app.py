@@ -88,7 +88,7 @@ def get_queried_foods():
   results = food.find({'$and' : queries})
   return json_util.dumps(results, default=json_util.default)
 
-@app.route('*')
+@app.route('/')
 def index():
   return render_template("index.html")
   # return send_from_directory(os.path.join(os.path.abspath("./build/client")), 'index.html')
