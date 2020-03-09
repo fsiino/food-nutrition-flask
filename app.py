@@ -94,5 +94,7 @@ def index():
 if __name__ == '__main__':
     app.run()
 
+# port = int(os.environ.get('PORT', 5000))
+
 # Run server in watch mode:
 # FLASK_APP=app.py FLASK_ENV=development flask run --port=8000
