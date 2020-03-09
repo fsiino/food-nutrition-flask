@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, current_app, send_from_directory
 from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
@@ -89,7 +89,7 @@ def get_queried_foods():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory(os.path.join(current_app.root_path, 'client', 'build'), 'index.html')
   # return jsonify({'msg': 'hello world'})
 
 if __name__ == '__main__':
