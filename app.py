@@ -19,8 +19,8 @@ def get_all_foods():
   output = []
   for food in food.find():
     output.append({'ndbno': food['ndbno'], 'name': food['name'], 'weight': food['weight'],
-                   'measure': food['measure'], 'nutruents': food['nutrients']})
-  return jsonify({'result': output})
+                   'measure': food['measure'], 'nutrients': food['nutrients']})
+  return jsonify(output)
 
 @app.route('/api/foods/search', methods=['GET'])
 def get_queried_foods():
@@ -53,6 +53,7 @@ def get_queried_foods():
     
   results = food.find({'$and' : queries})
   return json_util.dumps(results, default=json_util.default)
+  # return json_util.dumps(food.find({'$and': queries}), default=json_util.default)
 
 @app.route('/')
 def index():

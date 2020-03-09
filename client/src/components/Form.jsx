@@ -69,16 +69,22 @@ const Form = () => {
     setLoading(true);
     let query = '';
     const fieldsetsCopy = fieldsets;
+    let inputNutrients = '';
+    let inputMins = '';
+    let inputMaxes = '';
     for (let i = 0; i < fieldsetsCopy.length; i++) {
       const fieldsetCopy = fieldsetsCopy[i];
-      let nutrient = fieldsetCopy.nutrient.toLowerCase();
-      let min = fieldsetCopy.min;
-      let max = fieldsetCopy.max;
+      const nutrient = fieldsetCopy.nutrient.toLowerCase();
+      const min = fieldsetCopy.min;
+      const max = fieldsetCopy.max;
       if (!nutrient) continue; 
       if (!min) min = 0;
       if (!max) max = 99999; 
-      query += `nutrient=${nutrient}&min=${min}&max=${max}/`
+      inputNutrients += `${nutrient},`;
+      inputMins += `${min},`;
+      inputMaxes += `${max},`;
     }  
+    query += `nutrient=${inputNutrients.slice(0, inputNutrients.length)}&min=${inputMins.slice(0, inputMins.length)}&max=${inputMaxes.slice(0, inputMaxes.length)}/`
     axios.get(`/api/foods/search/${query}`)
       .then(res => {
         if (res.data.length > 0) {
