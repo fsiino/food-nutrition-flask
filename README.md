@@ -4,6 +4,9 @@ Taking this opportunity to familiarize myself with Python + Flask.
 
 First version with Express backend: <a href="https://github.com/fsiino/food-nutrition-express" target="_blank">https://github.com/fsiino/food-nutrition-express</a>
 
+### Live Link
+<a href="https://protected-woodland-23217.herokuapp.com/" target="_blank">https://protected-woodland-23217.herokuapp.com/</a>
+
 <img src="https://github.com/fsiino/food-nutrition-flask/blob/master/docs/fn-main.png?raw=true" alt="Screenshot">
 
 ## Objective
@@ -15,3 +18,4 @@ Create a backend Rest API with an endpoint URL called by the user to find foods 
 * React
 * PyMongo
 * Axios
+

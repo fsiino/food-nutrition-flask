@@ -91,15 +91,10 @@ def get_queried_foods():
 @app.route('/')
 def index():
   return render_template("index.html")
-  # return send_from_directory(os.path.join(os.path.abspath("./build/client")), 'index.html')
-    # return send_from_directory(os.path.join(os.path.dirname, 'client', 'build'), 'index.html')
-    # return send_from_directory(os.path.join(current_app.root_path, 'client', 'build'), 'index.html')
-  # return jsonify({'msg': 'hello world'})
+  # ungitignored client/build, ran npm run build, deployed.
 
 if __name__ == '__main__':
   app.run()
 
-# port = int(os.environ.get('PORT', 5000))
-
 # Run server in watch mode:
-# FLASK_APP=app.py FLASK_ENV=development flask run --port=8000
+# FLASK_APP=app.py FLASK_ENV=development flask run --port=5000
