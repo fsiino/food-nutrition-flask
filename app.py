@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from bson import json_util
 import re
 import os
+import dns
 
 app = Flask(__name__)
 
