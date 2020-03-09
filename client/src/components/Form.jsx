@@ -51,7 +51,12 @@ const Form = () => {
   const addNewFieldset = (e) => {
     e.preventDefault();
     let fieldsetsCopy = fieldsets.slice();
-    fieldsetsCopy.push(newFieldset);
+    // fieldsetsCopy.push(newFieldset);
+    fieldsetsCopy.push({
+      nutrient: '',
+      min: '',
+      max: ''
+    })
     setFieldsets(fieldsetsCopy);
   };
 
