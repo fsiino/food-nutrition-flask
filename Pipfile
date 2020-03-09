@@ -9,6 +9,7 @@ autopep8 = "*"
 [packages]
 flask = "*"
 flask-pymongo = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
