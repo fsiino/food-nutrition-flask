@@ -89,7 +89,7 @@ def get_queried_foods():
 
 @app.route('/')
 def index():
-    return send_from_directory(os.path.join(os.path.dirname(__file__), 'client', 'build'), 'index.html')
+    return send_from_directory(os.path.join(os.path.dirname('client', 'build'), 'index.html')
     # return send_from_directory(os.path.join(current_app.root_path, 'client', 'build'), 'index.html')
   # return jsonify({'msg': 'hello world'})
 
