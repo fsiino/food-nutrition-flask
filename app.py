@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 
 import config
 from bson import json_util
+import re
 
 app = Flask(__name__)
 
@@ -29,19 +30,41 @@ def get_queried_foods():
   results = []
   queries = []
 
-  nutrients = request.args.get('nutrients').split(',')
-  mins = request.args.get('mins').split(',')
-  maxes = request.args.get('maxes').split(',')
+  nutrients_params = request.args.get('nutrients')
+  mins_params = request.args.get('mins')
+  maxes_params = request.args.get('maxes')
+
+  if ',' in nutrients_params:
+    nutrients = nutrients_params.split(',')
+  else:
+    nutrientsList = []
+    nutrientsList.append(nutrients_params)
+    nutrients = nutrientsList
+
+  if ',' in mins_params:
+    mins = mins_params.split(',')
+  else:
+    minsList = []
+    minsList.append(mins_params)
+    mins = minsList
+
+  if ',' in maxes_params:
+    maxes = maxes_params.split(',')
+  else:
+    maxesList = []
+    maxesList.append(maxes_params)
+    maxes = maxesList
 
   fieldsets.append(nutrients)
   fieldsets.append(mins)
   fieldsets.append(maxes)
 
-  for i in range(len(fieldsets)-1):
+  for i in range(len(fieldsets[0])):
+    regex = ".*" + fieldsets[0][i] + ".*"
     query = {
       'nutrients': {
         '$elemMatch': {
-          'nutrient': fieldsets[0][i],
+          'nutrient': {"$regex": regex, "$options": "-i"},
           'gm': {
             '$gt': int(fieldsets[1][i]),
             '$lte': int(fieldsets[2][i]),
@@ -50,10 +73,9 @@ def get_queried_foods():
       }
     }
     queries.append(query)
-    
+
   results = food.find({'$and' : queries})
   return json_util.dumps(results, default=json_util.default)
-  # return json_util.dumps(food.find({'$and': queries}), default=json_util.default)
 
 @app.route('/')
 def index():
