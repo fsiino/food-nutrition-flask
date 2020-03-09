@@ -92,7 +92,7 @@ def index():
   return jsonify({'msg': 'hello world'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 # Run server in watch mode:
 # FLASK_APP=app.py FLASK_ENV=development flask run --port=8000
