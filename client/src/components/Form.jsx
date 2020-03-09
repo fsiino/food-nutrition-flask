@@ -74,8 +74,7 @@ const Form = () => {
     let inputMaxes = '';
     for (let i = 0; i < fieldsetsCopy.length; i++) {
       const fieldsetCopy = fieldsetsCopy[i];
-      // const nutrient = fieldsetCopy.nutrient.toLowerCase();
-      const nutrient = fieldsetCopy.nutrient;
+      const nutrient = fieldsetCopy.nutrient.toLowerCase();
       let min = fieldsetCopy.min;
       let max = fieldsetCopy.max;
       if (!nutrient) continue; 
