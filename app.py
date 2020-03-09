@@ -89,8 +89,8 @@ def get_queried_foods():
 
 @app.route('/')
 def index():
-  return jsonify({'msg': 'hello world'})
-    # return render_template('index.html')
+    return render_template('index.html')
+  # return jsonify({'msg': 'hello world'})
 
 if __name__ == '__main__':
   app.run()
