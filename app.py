@@ -1,9 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
 
-import config
 from bson import json_util
 import re
 import os
@@ -15,6 +14,7 @@ ENV = 'prod'
 app.config['MONGO_DBNAME'] = 'test'
 
 if ENV == 'dev':
+  import config
   app.debug = True
   app.config['MONGO_URI'] = config.api_key
 else:
@@ -89,7 +89,8 @@ def get_queried_foods():
 
 @app.route('/')
 def index():
-  return jsonify({'msg': 'hello world'})
+    return render_template('index.html')
+  # return jsonify({'msg': 'hello world'})
 
 if __name__ == '__main__':
     app.run()
