@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 import config
 from bson import json_util
 import re
+import os
 
 app = Flask(__name__)
 
@@ -18,7 +19,7 @@ if ENV == 'dev':
   app.config['MONGO_URI'] = config.api_key
 else:
   app.debug = False
-  app.config['MONGO_URI'] = process.env.MONGO_URI
+  app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 
 
 mongo = PyMongo(app)
