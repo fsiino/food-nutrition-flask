@@ -11,13 +11,15 @@ app = Flask(__name__)
 
 ENV = 'prod'
 
-if ENV == 'dev':
-    app.debug = True
-else:
-    app.debug = False
-
 app.config['MONGO_DBNAME'] = 'test'
-app.config['MONGO_URI'] = config.api_key
+
+if ENV == 'dev':
+  app.debug = True
+  app.config['MONGO_URI'] = config.api_key
+else:
+  app.debug = False
+  app.config['MONGO_URI'] = process.env.MONGO_URI
+
 
 mongo = PyMongo(app)
 
