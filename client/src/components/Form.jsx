@@ -77,7 +77,7 @@ const Form = () => {
       const nutrient = fieldsetCopy.nutrient.toLowerCase();
       let min = fieldsetCopy.min;
       let max = fieldsetCopy.max;
-      if (!nutrient) continue; 
+      if (!nutrient || (nutrient.includes(','))) continue;
       if (!min) min = 0;
       if (!max) max = 99999; 
       inputNutrients += `${nutrient},`;
